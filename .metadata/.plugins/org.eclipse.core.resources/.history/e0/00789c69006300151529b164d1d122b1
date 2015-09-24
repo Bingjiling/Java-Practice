@@ -17,15 +17,9 @@ public class Range implements Iterable<Integer> {
 		this.min = min;
 		this.max = max;
 		this.increment = increment;
-		if (increment >0){
-			for (int i = min; i < max; i = i+increment){
-				this.lst.add(i);
-			}
-		}
-		if (increment <0){
-			for (int i = min; i > max; i = i+increment){
-				this.lst.add(i);
-			}
+		for (int i = min; i < max; i = i+increment){
+			//System.out.println(i);
+			this.lst.add(i);
 		}
 		this.lst.iterator();
 	}
@@ -47,7 +41,7 @@ public class Range implements Iterable<Integer> {
 	}
 	
 	public static void main(String[] args) {
-		for(Integer j : new Range(8,1,-1)) {
+		for(Integer j : new Range(1,8)) {
 			  System.out.print(j);
 			}
 	}
