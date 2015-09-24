@@ -291,22 +291,28 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     	Node<T> currentNodeTwo = other.beginMarker.next;
     	Node<T> temp;
     	if (sizeDiff >= 0){
-    		for(int i = 1; i <= 2*sizeTwo; i++ ){
+    		for(int i = 1; i <= 2*sizeTwo-1; i++ ){
     			temp = currentNodeOne.next;
     			currentNodeOne.next = currentNodeTwo;
     			currentNodeTwo.prev = currentNodeOne;
     			currentNodeOne = currentNodeTwo;
     			currentNodeTwo = temp;
     		}
+    		temp = currentNodeOne.next;
+			currentNodeOne.next = currentNodeTwo;
+			currentNodeTwo.prev = currentNodeOne;
     	}
     	else{
-    		for(int i = 1; i <= 2*sizeOne-1; i++ ){
+    		for(int i = 1; i <= 2*sizeOne-2; i++ ){
     			temp = currentNodeOne.next;
     			currentNodeOne.next = currentNodeTwo;
     			currentNodeTwo.prev = currentNodeOne;
     			currentNodeOne = currentNodeTwo;
     			currentNodeTwo = temp;
     		}
+    		temp = currentNodeOne.next;
+			currentNodeOne.next = currentNodeTwo;
+			currentNodeTwo.prev = currentNodeOne;
     	}
     }
     
@@ -375,8 +381,8 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 		//System.out.println("The index of 3 is "+k);
 				
 		//check method reverse()
-		lst.reverse();
-		System.out.println(lst.toString());
+//		lst.reverse();
+//		System.out.println(lst.toString());
 				
 		//check method removeDuplicates()
 		//lst.add(0,7);
@@ -388,11 +394,11 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 		//check method interleaves
 		SimpleLinkedList<Integer> lst1 = new SimpleLinkedList<>();
 		SimpleLinkedList<Integer> lst2 = new SimpleLinkedList<>();
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 2; i++)
 			lst1.add(i);
-		for (int i = 20; i < 22; i++)
+		for (int i = 20; i < 21; i++)
 			lst2.add(0, i);
-		lst1.interleave(lst2);
+		lst2.interleave(lst1);
 		System.out.println(lst1.toString());
 
 	}
