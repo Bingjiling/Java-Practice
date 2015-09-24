@@ -313,7 +313,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     		temp = currentNodeOne.next;
 			currentNodeOne.next = currentNodeTwo;
 			currentNodeTwo.prev = currentNodeOne;
-       	}
+    	}
     }
     
 

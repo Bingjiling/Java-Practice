@@ -310,9 +310,6 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     			currentNodeOne = currentNodeTwo;
     			currentNodeTwo = temp;
     		}
-    		temp = currentNodeOne.next;
-			currentNodeOne.next = currentNodeTwo;
-			currentNodeTwo.prev = currentNodeOne;
        	}
     }
     
