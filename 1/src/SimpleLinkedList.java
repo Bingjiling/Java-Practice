@@ -408,9 +408,9 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 		//check method interleaves
 		SimpleLinkedList<Integer> lst1 = new SimpleLinkedList<>();
 		SimpleLinkedList<Integer> lst2 = new SimpleLinkedList<>();
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 6; i++)
 			lst1.add(i);
-		for (int i = 20; i < 23; i++)
+		for (int i = 20; i < 24; i++)
 			lst2.add(0, i);
 		lst2.interleave(lst1);
 		System.out.println(lst2.toString());
