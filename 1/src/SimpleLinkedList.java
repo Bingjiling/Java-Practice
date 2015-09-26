@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * LinkedList class implements a doubly-linked list. Adapted from Weiss, Data
  * Structures and Algorithm Analysis in Java. 3rd ed.
@@ -284,11 +286,22 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      * @param other The list to be interleaved into the linked list. 
      */
     public void interleave(SimpleLinkedList<T> other){
+    	SimpleLinkedList<T> otherJunior = new SimpleLinkedList<>();
+    	otherJunior = other;
     	int sizeOne = this.size;
     	int sizeTwo = other.size;
+    	if (sizeTwo == 0){
+    		return;
+    	}
+    	if (sizeOne == 0){
+    		this.beginMarker = other.beginMarker;
+    		this.endMarker = other.endMarker;
+    		this.size = other.size;
+    	}
     	int sizeDiff = sizeOne - sizeTwo;
     	Node<T> currentNodeOne = beginMarker.next;
     	Node<T> currentNodeTwo = other.beginMarker.next;
+    	Node<T> otherEnd = other.endMarker.prev;
     	Node<T> temp;
     	if (sizeDiff >= 0){
     		for(int i = 1; i <= 2*sizeTwo-1; i++ ){
@@ -303,17 +316,18 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 			currentNodeTwo.prev = currentNodeOne;
     	}
     	else{
-    		for(int i = 1; i <= 2*sizeOne-2; i++ ){
+    		for(int i = 1; i <= 2*sizeOne-1; i++ ){
     			temp = currentNodeOne.next;
     			currentNodeOne.next = currentNodeTwo;
     			currentNodeTwo.prev = currentNodeOne;
     			currentNodeOne = currentNodeTwo;
     			currentNodeTwo = temp;
     		}
-    		temp = currentNodeOne.next;
-			currentNodeOne.next = currentNodeTwo;
-			currentNodeTwo.prev = currentNodeOne;
+    		otherEnd.next = currentNodeTwo;
+    		currentNodeTwo.prev = otherEnd;
        	}
+    	other = otherJunior;
+    	this.size = sizeOne + sizeTwo;
     }
     
 
