@@ -297,7 +297,6 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     		this.beginMarker = other.beginMarker;
     		this.endMarker = other.endMarker;
     		this.size = other.size;
-    		return;
     	}
     	int sizeDiff = sizeOne - sizeTwo;
     	Node<T> currentNodeOne = beginMarker.next;
@@ -409,13 +408,12 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 		//check method interleaves
 		SimpleLinkedList<Integer> lst1 = new SimpleLinkedList<>();
 		SimpleLinkedList<Integer> lst2 = new SimpleLinkedList<>();
-//		System.out.println(lst1.size);
 //		for (int i = 0; i < 7; i++)
 //			lst1.add(i);
 		for (int i = 20; i < 24; i++)
 			lst2.add(0, i);
 		lst1.interleave(lst2);
-		System.out.println(lst1);
+		System.out.println(lst1.toString());
 
 	}
 }
