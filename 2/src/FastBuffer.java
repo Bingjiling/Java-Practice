@@ -102,21 +102,21 @@ public class FastBuffer implements Buffer{
 	   return left.removeFirst();
    }
    
-//   public static void main(String[] args){
-//	   char[] test;
-//	   test = new char[5];
-//	   test[0] = 'a';
-//	   test[1] = 'b';
-//	   test[2] = 'c';
-//	   test[3] = 'd';
-//	   test[4] = 'e';
-//	   FastBuffer fastBuffer = new FastBuffer();
-//	   fastBuffer.load(test, 3);
-//	   System.out.println(fastBuffer.left);
-////	   System.out.println(fastBuffer.toArray());
-//	   fastBuffer.setCursor(4);
-//	   System.out.println(fastBuffer.left);
+   public static void main(String[] args){
+	   char[] test;
+	   test = new char[5];
+	   test[0] = 'a';
+	   test[1] = 'b';
+	   test[2] = 'c';
+	   test[3] = 'd';
+	   test[4] = 'e';
+	   FastBuffer fastBuffer = new FastBuffer();
+	   fastBuffer.load(test, 3);
+	   System.out.println(fastBuffer.left);
 //	   System.out.println(fastBuffer.toArray());
-////	   System.out.println(fastBuffer.toArray());
-//   }
+	   fastBuffer.setCursor(4);
+	   System.out.println(fastBuffer.left);
+	   System.out.println(fastBuffer.toArray());
+//	   System.out.println(fastBuffer.toArray());
+   }
 }
