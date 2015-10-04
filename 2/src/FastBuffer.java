@@ -64,7 +64,7 @@ public class FastBuffer implements Buffer{
    */
    public void moveRight(){
 	   cursorPosition++;
-	   right.addFirst(left.removeFirst());
+	   left.addFirst(right.removeFirst());
    }
 
    /** move cursor one to the left
@@ -72,7 +72,7 @@ public class FastBuffer implements Buffer{
     */
    public void moveLeft(){
 	   cursorPosition--;
-	   left.addFirst(right.removeFirst());
+	   right.addFirst(left.removeFirst());
    }
 
    /** insert a new char to the left of the cursor
@@ -112,10 +112,15 @@ public class FastBuffer implements Buffer{
 	   test[4] = 'e';
 	   FastBuffer fastBuffer = new FastBuffer();
 	   fastBuffer.load(test, 3);
-	   System.out.println(fastBuffer.left);
+//	   System.out.println(fastBuffer.left);
 //	   System.out.println(fastBuffer.toArray());
-	   fastBuffer.setCursor(4);
-	   System.out.println(fastBuffer.left);
+//	   fastBuffer.setCursor(4);
+//	   System.out.println(fastBuffer.left);
+//	   fastBuffer.moveRight();
+//	   System.out.println(fastBuffer.left);
+//	   System.out.println(fastBuffer.right);
+//	   System.out.println(fastBuffer.cursorPosition);
+	   fastBuffer.deleteRight();
 	   System.out.println(fastBuffer.toArray());
 //	   System.out.println(fastBuffer.toArray());
    }
