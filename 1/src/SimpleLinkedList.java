@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * LinkedList class implements a doubly-linked list. Adapted from Weiss, Data
  * Structures and Algorithm Analysis in Java. 3rd ed.
@@ -216,6 +218,119 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 	}
 
 	/********* ADD YOUR SOLUTIONS HERE *****************/
+	/**
+	 * 
+	 * @param o the object to be found
+	 * @return the index of the first occurence of the element o, or -1 if the element is not found.
+	 */
+    public int indexOf(Object o){
+    	Node<T> currentNode = beginMarker.next;
+    	int i = 0;
+    	while (currentNode != endMarker){    		
+    		if (currentNode.data.equals(o))
+    		return i;
+    		i++; 
+    		currentNode = currentNode.next;
+    	}
+    	return -1;
+    }    
+    /**
+     * flips the order of the list
+     * Single Time step: Add a direction parameter to the linked list.
+     * And use this new parameter in methods next() and prev() to 
+     * control the direction of the list. And method reverse() only
+     * need to swap the endMarker and beginMarker, which can be done in
+     * constant time.
+     */
+    public void reverse(){
+    	Node<T> currentNode = beginMarker;
+    	beginMarker = endMarker;
+    	endMarker = currentNode;
+    	endMarker.prev = endMarker.next;
+    	endMarker.next = null;
+    	beginMarker.next = beginMarker.prev;
+    	beginMarker.prev = null;
+    	currentNode = beginMarker.next;
+    	Node <T> currentNodeJunior;
+    	while (currentNode != endMarker){
+    		currentNodeJunior = currentNode.prev;
+    		currentNode.prev = currentNode.next;
+    		currentNode.next = currentNodeJunior;
+    		currentNode = currentNode.next; 
+    	}
+    }
+    /**
+     * removes duplicate elements in the list
+     */
+    public void removeDuplicates(){
+    	Node<T> currentNode = beginMarker.next;
+    	Node<T> checkNode;
+    	while (currentNode != endMarker){
+    		T currentData = currentNode.data;
+    		checkNode = currentNode.next;
+    		while (checkNode != endMarker){
+    			T checkData = checkNode.data;
+    			if (currentData == checkData)
+    				remove(checkNode);
+    			    size--;
+    			    checkNode = checkNode.next;
+    		}
+    		currentNode = currentNode.next;
+    	}
+    }
+    /**
+     * interleaves elements from the other list into the linked list.
+     *  If other is longer than the current list its remaining 
+     *  elements should simply be appended.
+     * 
+     * @param other The list to be interleaved into the linked list. 
+     */
+    public void interleave(SimpleLinkedList<T> other){
+    	SimpleLinkedList<T> otherJunior = new SimpleLinkedList<>();
+    	otherJunior = other;
+    	int sizeOne = this.size;
+    	int sizeTwo = other.size;
+    	if (sizeTwo == 0){
+    		return;
+    	}
+    	if (sizeOne == 0){
+    		this.beginMarker = other.beginMarker;
+    		this.endMarker = other.endMarker;
+    		this.size = other.size;
+    		return;
+    	}
+    	int sizeDiff = sizeOne - sizeTwo;
+    	Node<T> currentNodeOne = beginMarker.next;
+    	Node<T> currentNodeTwo = other.beginMarker.next;
+    	Node<T> otherEnd = other.endMarker.prev;
+    	Node<T> temp;
+    	if (sizeDiff >= 0){
+    		for(int i = 1; i <= 2*sizeTwo-1; i++ ){
+    			temp = currentNodeOne.next;
+    			currentNodeOne.next = currentNodeTwo;
+    			currentNodeTwo.prev = currentNodeOne;
+    			currentNodeOne = currentNodeTwo;
+    			currentNodeTwo = temp;
+    		}
+    		temp = currentNodeOne.next;
+			currentNodeOne.next = currentNodeTwo;
+			currentNodeTwo.prev = currentNodeOne;
+    	}
+    	else{
+    		for(int i = 1; i <= 2*sizeOne-1; i++ ){
+    			temp = currentNodeOne.next;
+    			currentNodeOne.next = currentNodeTwo;
+    			currentNodeTwo.prev = currentNodeOne;
+    			currentNodeOne = currentNodeTwo;
+    			currentNodeTwo = temp;
+    		}
+    		otherEnd.next = currentNodeTwo;
+    		currentNodeTwo.prev = otherEnd;
+       	}
+    	other = otherJunior;
+    	this.size = sizeOne + sizeTwo;
+    }
+    
 
 	/**
 	 * Obtains an Iterator object used to traverse the collection.
@@ -275,6 +390,32 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 		lst.remove(lst.size() - 1);
 
 		System.out.println(lst);
+		
+		//check method indexOf()
+		//int k = lst.indexOf(3);
+		//System.out.println("The index of 3 is "+k);
+				
+		//check method reverse()
+//		lst.reverse();
+//		System.out.println(lst.toString());
+				
+		//check method removeDuplicates()
+		//lst.add(0,7);
+		//lst.add(7,20);
+		//System.out.println(lst.toString());
+		//lst.removeDuplicates();
+		//System.out.println(lst.toString());
+				
+		//check method interleaves
+		SimpleLinkedList<Integer> lst1 = new SimpleLinkedList<>();
+		SimpleLinkedList<Integer> lst2 = new SimpleLinkedList<>();
+//		System.out.println(lst1.size);
+//		for (int i = 0; i < 7; i++)
+//			lst1.add(i);
+		for (int i = 20; i < 24; i++)
+			lst2.add(0, i);
+		lst1.interleave(lst2);
+		System.out.println(lst1);
 
 	}
 }
