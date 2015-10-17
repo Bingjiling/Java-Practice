@@ -1,10 +1,10 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 // This class should countain your implementation of the Buffer interface.
 public class FastBuffer implements Buffer{
-	
-	LinkedList<Character> left = new LinkedList<>();
-	LinkedList<Character> right = new LinkedList<>();
+	Deque<Character> left = new ArrayDeque<Character>();
+	Deque<Character> right = new ArrayDeque<Character>();
 	int cursorPosition;
 	int size;
 	
