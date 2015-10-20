@@ -13,6 +13,12 @@ public class Trie {
   // implement your methods here
   // feel free (and you probably should) add helper private methods
   // problem 4a
+  /*
+   * Add new character to the first available place instead of the corresponding 
+   * place. It's a little bit slow in add, but faster in printing. And if the node
+   * can be made to suit for the size needed. it'll save memory space.
+   * 
+   */
   public void addWord(String word) {
 	 char[] charArray = word.toCharArray();
 	 for(char c:charArray){
@@ -61,7 +67,9 @@ public class Trie {
   
   private boolean contains(char[] charArray, TrieNode node, int k){
 	  for(int i=0 ; i<26 ; i++){
-		  if(charArray[k] == node.children[i].letter){
+		  if(node.children[i] == null){
+			  return false;
+		  }else if(charArray[k] == node.children[i].letter){
 			  if(k != charArray.length - 1){
 				  return contains(charArray, node.children[i], k+1);
 			  }else{
@@ -123,8 +131,39 @@ public class Trie {
 
   // problem 4d
   public List<String> getStartsWith(String prefix) {
-    return null;
-  }
+	  char[] charArray = prefix.toCharArray();
+		 for(char c:charArray){
+			 if(c < 'a' || c > 'z'){
+				 throw new IllegalArgumentException("Input is not lowercase letters.");
+			 }
+		 }
+	  TrieNode node = getStartsWith(charArray, root,0);
+	  List<String> list = new ArrayList<>();
+	  StringBuilder sb = new StringBuilder();
+	  getStrings(node, list, sb);
+	  for(int i = 0; i < list.size(); i++){
+		  list.set(i, prefix + list.get(i));
+	  }
+	  return list;
+   }
+    
+  private TrieNode getStartsWith(char[] charArray, TrieNode node, int k){
+	  for(int i=0 ; i<26 ; i++){
+		  if(node.children[i]==null)
+			  throw new IllegalArgumentException("No such words in trie.");
+		  if(charArray[k] == node.children[i].letter){
+			  if(k != charArray.length - 1){
+				  return getStartsWith(charArray, node.children[i], k+1);
+			  }else{
+				  node = node.children[i];
+				  return node;
+			  }
+	      }
+	  }
+	return node;
+  } 
+	  
+	  
 
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -170,6 +209,7 @@ public class Trie {
     trie.addWord("happy");
     trie.addWord("ha");
 //    System.out.println(trie.contains("hello"));
+//    System.out.println(trie.contains("hello"));
 //    for(TrieNode node : trie.root.children){
 //    	System.out.println(node);
 //    }
@@ -178,9 +218,9 @@ public class Trie {
 //    sb.append("a");
 //    sbPrime = sb;
 //    sbPrime.append("b");
-    System.out.println(trie.getStrings());
-    System.out.println(trie);
 //    System.out.println(trie.getStrings());
-//    System.out.println(trie.getStartsWith("hell"));
+//    System.out.println(trie);
+//    System.out.println(trie.getStrings());
+//    System.out.println(trie.getStartsWith("he"));
   }
 }
