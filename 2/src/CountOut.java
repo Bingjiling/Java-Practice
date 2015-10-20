@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class CountOut {
-<<<<<<< HEAD
 /**
  * runs a simulation for a given n and a given k
  * @param n
@@ -23,9 +22,7 @@ public class CountOut {
     	outPut.add(remainingPlayers.poll());
     }
     return outPut;
- }
-
-  /**
+}  /**
    * returns the last remaining player.
    * It's a O(n*logn) algorithm 
    * @param n
@@ -33,8 +30,8 @@ public class CountOut {
    * @return
    */
   public static Integer findWinner(int n, int k) {
-   // Your code here.
-  }
+    return play(n,k).get(n-1);
+ }
 /**
  * It's a O(n) algotirhm
  * @param n

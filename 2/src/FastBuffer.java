@@ -125,3 +125,4 @@ public class FastBuffer implements Buffer{
 //	   System.out.println(fastBuffer.toArray());
    }
 }
+
