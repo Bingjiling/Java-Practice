@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Stack;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BinarySearchTree<T extends Comparable<? super T>> implements Iterable<T> {
@@ -13,18 +15,76 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Iterab
   // feel free (and you probably should) add helper private methods
   // problem 3a
   public boolean isBst() {
-    return true;
+    return isBst(root);
+  }
+  
+  private boolean isBst(BinaryNode<T> node){
+	  if (height(node.left) - height(node.right) > 1){
+		  return false;
+	  }
+	  if(node.left != null){
+		  return isBst(node.left);
+	  }
+	  if(node.right != null){
+		  return isBst(node.right);
+	  }
+	  return true;
   }
 
   // problem 3b
   public List<T> getInterval(T min, T max) {
-    return null;
+	List<T> interval = new ArrayList<>();
+    getInterval(root, min, max, interval);
+    return interval;
+  }
+  
+  private void getInterval(BinaryNode<T> node, T min, T max, List<T> interval){
+	if(node != null){  
+		if (min.compareTo(node.data) <= 0 && max.compareTo(node.data) >= 0){
+			getInterval(node.left, min, max, interval);
+			interval.add(node.data);
+			getInterval(node.right, min, max, interval);
+		}else if (min.compareTo(node.data) > 0){
+			getInterval(node.right, min, max, interval);
+		}else if (max.compareTo(node.data) < 0){
+			getInterval(node.left, min, max, interval);
+		}
+	}
   }
 
   // problem 3c
   @Override
   public Iterator<T> iterator() {
-    return null;
+	  return new PreOrderIterator();
+  }
+  
+  private class PreOrderIterator implements Iterator<T>{
+	  private final Stack<BinaryNode<T>> stack;
+	  
+	  public PreOrderIterator(){
+		  stack = new Stack<BinaryNode<T>>();
+		  stack.add(root);
+	  }
+	  
+	  @Override
+	  public boolean hasNext(){
+		  return !stack.isEmpty(); 
+	  }
+	  
+	  @Override
+	  public T next(){
+		  BinaryNode<T> temp = stack.pop();
+		  if(temp.left != null)
+			  stack.push(temp.left);
+		  if(temp.right != null)
+			  stack.push(temp.right);
+		  return temp.data;
+	  }
+	  
+	  @Override
+	  public void remove(){
+		  throw new UnsupportedOperationException("Invalid operation for iterator");
+	  }
   }
 
   public void insert(T x) {
@@ -158,36 +218,39 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Iterab
 
     for (int i = GAP; i != 0; i = (i + GAP) % NUMS)
       t.insert(i);
-
-    t.printTree();
-
-    for (int i = 1; i < NUMS; i += 2)
-      t.remove(i);
-
-    t.printTree();
-
-    if (NUMS < 40)
-      t.printTree();
-    if (t.findMin() != 2 || t.findMax() != NUMS - 2)
-      System.out.println("FindMin or FindMax error!");
-
-    for (int i = 2; i < NUMS; i += 2)
-      if (!t.contains(i))
-        System.out.println("Find error1!");
-
-    for (int i = 1; i < NUMS; i += 2) {
-      if (t.contains(i))
-        System.out.println("Find error2!");
-    }
-    BinarySearchTree<String> st = new BinarySearchTree<String>();
-    String s = "sdljfnzxvk234";
-    for (int j = 0; j < s.length(); j++) {
-      st.insert(s.substring(j, j + 1));
-    }
-    st.remove("f");
-    System.out.println("x " + st.contains("x"));
-    System.out.println("max " + st.findMax());
-    System.out.println("min " + st.findMin());
+      
+//      System.out.println(t.root.data);
+//      t.printTree();
+//      System.out.println(t.getInterval(-1, 10));
+//    t.printTree();
+//
+//    for (int i = 1; i < NUMS; i += 2)
+//      t.remove(i);
+//
+//    t.printTree();
+//
+//    if (NUMS < 40)
+//      t.printTree();
+//    if (t.findMin() != 2 || t.findMax() != NUMS - 2)
+//      System.out.println("FindMin or FindMax error!");
+//
+//    for (int i = 2; i < NUMS; i += 2)
+//      if (!t.contains(i))
+//        System.out.println("Find error1!");
+//
+//    for (int i = 1; i < NUMS; i += 2) {
+//      if (t.contains(i))
+//        System.out.println("Find error2!");
+//    }
+//    BinarySearchTree<String> st = new BinarySearchTree<String>();
+//    String s = "sdljfnzxvk234";
+//    for (int j = 0; j < s.length(); j++) {
+//      st.insert(s.substring(j, j + 1));
+//    }
+//    st.remove("f");
+//    System.out.println("x " + st.contains("x"));
+//    System.out.println("max " + st.findMax());
+//    System.out.println("min " + st.findMin());
   }
 
   private class BinaryNode<U> {
