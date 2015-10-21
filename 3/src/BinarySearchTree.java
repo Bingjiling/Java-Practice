@@ -220,19 +220,26 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Iterab
   // Test program
   public static void main(String[] args) throws Exception {
     BinarySearchTree<Integer> t = new BinarySearchTree<>();
-    final int NUMS = 100;// 4000;
-    final int GAP = 37;
+//    final int NUMS = 100;// 4000;
+//    final int GAP = 37;
 
     System.out.println("Checking... (no more output means success)");
     
     
-    for (int i = GAP; i != 0; i = (i + GAP) % NUMS)
-      t.insert(i);
-    
-//    Iterator<Integer> ite = t.iterator();
-//    while(ite.hasNext()){
-//    	System.out.println(ite.next());
-//    }
+//    for (int i = GAP; i != 0; i = (i + GAP) % NUMS)
+//      t.insert(i);
+    t.insert(5);
+    t.insert(3);
+    t.insert(8);
+    t.insert(2);
+    t.insert(4);
+    t.insert(6);
+    t.insert(8);
+    t.insert(10);
+    Iterator<Integer> ite = t.iterator();
+    while(ite.hasNext()){
+    	System.out.println(ite.next());
+    }
 //      System.out.println(t.isBst());
 //      System.out.println(t.root.data);
 //      t.printTree();
