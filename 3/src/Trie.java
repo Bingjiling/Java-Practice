@@ -150,7 +150,7 @@ public class Trie {
   private TrieNode getStartsWith(char[] charArray, TrieNode node, int k){
 	  for(int i=0 ; i<26 ; i++){
 		  if(node.children[i]==null)
-			  throw new IllegalArgumentException("No such words in trie.");
+			  return root;
 		  if(charArray[k] == node.children[i].letter){
 			  if(k != charArray.length - 1){
 				  return getStartsWith(charArray, node.children[i], k+1);
@@ -221,6 +221,6 @@ public class Trie {
 //    System.out.println(trie.getStrings());
 //    System.out.println(trie);
 //    System.out.println(trie.getStrings());
-//    System.out.println(trie.getStartsWith("he"));
+    System.out.println(trie.getStartsWith("hea"));
   }
 }
