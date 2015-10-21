@@ -73,10 +73,10 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Iterab
 	  private void postOrderIterator(Stack<BinaryNode<T>> stack, BinaryNode<T> node){
 		  if(node != null)
 			  stack.push(node);
-		  if(node.left != null)
-			  postOrderIterator(stack, node.left);
 		  if(node.right != null)
-			  postOrderIterator(stack, node.right);	  
+			  postOrderIterator(stack, node.right);
+		  if(node.left != null)
+			  postOrderIterator(stack, node.left);	  
 	  }
 	  
 	  @Override
@@ -220,14 +220,20 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Iterab
   // Test program
   public static void main(String[] args) throws Exception {
     BinarySearchTree<Integer> t = new BinarySearchTree<>();
-//    final int NUMS = 100;// 4000;
-//    final int GAP = 37;
+    final int NUMS = 100;// 4000;
+    final int GAP = 37;
 
     System.out.println("Checking... (no more output means success)");
-
-//    for (int i = GAP; i != 0; i = (i + GAP) % NUMS)
-//      t.insert(i);
-      System.out.println(t.isBst());
+    
+    
+    for (int i = GAP; i != 0; i = (i + GAP) % NUMS)
+      t.insert(i);
+    
+//    Iterator<Integer> ite = t.iterator();
+//    while(ite.hasNext()){
+//    	System.out.println(ite.next());
+//    }
+//      System.out.println(t.isBst());
 //      System.out.println(t.root.data);
 //      t.printTree();
 //      System.out.println(t.getInterval(-1, 10));
