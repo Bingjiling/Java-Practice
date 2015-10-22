@@ -141,12 +141,11 @@ public class Trie {
 	  List<String> list = new ArrayList<>();
 	  StringBuilder sb = new StringBuilder();
 	  getStrings(node, list, sb);
-	  if(list.isEmpty()&&node.endOfWord){
-		  list.add(prefix);
-	  }else{
-		  for(int i = 0; i < list.size(); i++){
-		  list.set(i, prefix + list.get(i));
-	      }
+	  for(int i = 0; i < list.size(); i++){
+		 list.set(i, prefix + list.get(i));
+	     if(node.endOfWord){
+	    	 list.add(0, prefix);
+	     }
 	  }
 	  return list;
    }
@@ -198,11 +197,6 @@ public class Trie {
       this.endOfWord = endOfWord;
       children = new TrieNode[26]; // number of letters in English alphabet
     }
-
-//    public String toString() {
-//      return endOfWord ? Character.toString(Character.toUpperCase(letter)) : Character.toString(letter);
-//    }
-//  }
     
     public String toString() {
         return Character.toString(letter);
@@ -232,6 +226,6 @@ public class Trie {
 //    System.out.println(trie);
 //    System.out.println(trie.getStrings());
     System.out.println(trie.getStrings());
-    System.out.println(trie.getStartsWith("dog"));
+    System.out.println(trie.getStartsWith("do"));
   }
 }
