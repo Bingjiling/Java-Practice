@@ -102,7 +102,7 @@ public class Trie {
 				  for(int k=0; k<sb.length(); k++){
 					  sbTemp.append(sb.charAt(k));
 				  }
-				  sbTemp.append(node.children[i]);			  
+				  sbTemp.append(node.children[i].letter);			  
 				  if(node.children[i].endOfWord == true){
 					  list.add(sbTemp.toString());
 					  getStrings(node.children[i], list, sbTemp);
@@ -115,7 +115,7 @@ public class Trie {
 		  for(int i=0 ; i<26 ; i++){		  
 			  if(node.children[i] != null){
 				  
-				  sb.append(node.children[i]);			  
+				  sb.append(node.children[i].letter);			  
 				  if(node.children[i].endOfWord == true){
 					  list.add(sb.toString());
 					  getStrings(node.children[i], list, sb);
@@ -199,7 +199,7 @@ public class Trie {
     }
     
     public String toString() {
-        return Character.toString(letter);
+        return endOfWord? Character.toString(Character.toUpperCase(letter)):Character.toString(letter);
       }
     }
 
@@ -223,8 +223,8 @@ public class Trie {
 //    sbPrime = sb;
 //    sbPrime.append("b");
 //    System.out.println(trie.getStrings());
-//    System.out.println(trie);
-//    System.out.println(trie.getStrings());
+    System.out.println(trie);
+    System.out.println(trie.getStrings());
 //    System.out.println(trie.getStrings());
 //    System.out.println(trie.getStartsWith("do"));
   }
