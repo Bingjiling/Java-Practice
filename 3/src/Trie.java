@@ -195,19 +195,25 @@ public class Trie {
       children = new TrieNode[26]; // number of letters in English alphabet
     }
 
+//    public String toString() {
+//      return endOfWord ? Character.toString(Character.toUpperCase(letter)) : Character.toString(letter);
+//    }
+//  }
+    
     public String toString() {
-      return endOfWord ? Character.toString(Character.toUpperCase(letter)) : Character.toString(letter);
+        return Character.toString(letter);
+      }
     }
-  }
 
   public static void main(String[] args) {
     Trie trie = new Trie();
     
     
-    trie.addWord("hello");
-    trie.addWord("help");
-    trie.addWord("happy");
-    trie.addWord("ha");
+    trie.addWord("do");
+    trie.addWord("doctor");
+    trie.addWord("dock");
+    trie.addWord("dog");
+    trie.addWord("doll");
 //    System.out.println(trie.contains("hello"));
 //    System.out.println(trie.contains("hello"));
 //    for(TrieNode node : trie.root.children){
@@ -221,6 +227,6 @@ public class Trie {
 //    System.out.println(trie.getStrings());
 //    System.out.println(trie);
 //    System.out.println(trie.getStrings());
-    System.out.println(trie.getStartsWith("hea"));
+    System.out.println(trie.getStrings());
   }
 }
