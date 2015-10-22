@@ -209,9 +209,9 @@ public class Trie {
     
     trie.addWord("do");
     trie.addWord("doctor");
-//    trie.addWord("dock");
-//    trie.addWord("dog");
-//    trie.addWord("doll");
+    trie.addWord("dock");
+    trie.addWord("dog");
+    trie.addWord("doll");
 //    System.out.println(trie.contains("hello"));
 //    System.out.println(trie.contains("hello"));
 //    for(TrieNode node : trie.root.children){
@@ -225,7 +225,7 @@ public class Trie {
 //    System.out.println(trie.getStrings());
 //    System.out.println(trie);
 //    System.out.println(trie.getStrings());
-    System.out.println(trie.getStrings());
-    System.out.println(trie.getStartsWith("do"));
+//    System.out.println(trie.getStrings());
+//    System.out.println(trie.getStartsWith("do"));
   }
 }
