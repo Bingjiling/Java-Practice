@@ -141,8 +141,12 @@ public class Trie {
 	  List<String> list = new ArrayList<>();
 	  StringBuilder sb = new StringBuilder();
 	  getStrings(node, list, sb);
-	  for(int i = 0; i < list.size(); i++){
+	  if(list.isEmpty()&&node.endOfWord){
+		  list.add(prefix);
+	  }else{
+		  for(int i = 0; i < list.size(); i++){
 		  list.set(i, prefix + list.get(i));
+	      }
 	  }
 	  return list;
    }
@@ -228,5 +232,6 @@ public class Trie {
 //    System.out.println(trie);
 //    System.out.println(trie.getStrings());
     System.out.println(trie.getStrings());
+    System.out.println(trie.getStartsWith("dog"));
   }
 }
