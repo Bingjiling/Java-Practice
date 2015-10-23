@@ -142,9 +142,9 @@ public class Trie {
 	  getStrings(node, list, sb);
 	  for(int i = 0; i < list.size(); i++){
 		 list.set(i, prefix + list.get(i));
-	     if(node.endOfWord){
-	    	 list.add(0, prefix);
-	     }
+	  }
+	  if(node.endOfWord){
+	    	 list.add(0,prefix);
 	  }
 	  return list;
    }
@@ -211,6 +211,8 @@ public class Trie {
     trie.addWord("dock");
     trie.addWord("dog");
     trie.addWord("doll");
+    System.out.println(trie.contains("doll"));
+    
 //    System.out.println(trie.contains("hello"));
 //    System.out.println(trie.contains("hello"));
 //    for(TrieNode node : trie.root.children){
@@ -222,8 +224,9 @@ public class Trie {
 //    sbPrime = sb;
 //    sbPrime.append("b");
 //    System.out.println(trie.getStrings());
-    System.out.println(trie);
-    System.out.println(trie.getStrings());
+//    System.out.println(trie);
+//    System.out.println(trie.getStrings());
+    System.out.println(trie.getStartsWith("do"));
 //    System.out.println(trie.getStrings());
 //    System.out.println(trie.getStartsWith("do"));
   }
