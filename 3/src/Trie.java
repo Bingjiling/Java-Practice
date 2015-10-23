@@ -16,8 +16,7 @@ public class Trie {
   /*
    * Add new character to the first available place instead of the corresponding 
    * place. It's a little bit slow in add, but faster in printing. And if the node
-   * can be made to suit for the size needed. it'll save memory space.
-   * 
+   * can be made to suit for the size needed. it'll save memory space. 
    */
   public void addWord(String word) {
 	 char[] charArray = word.toCharArray();
