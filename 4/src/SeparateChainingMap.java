@@ -6,8 +6,8 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
   public static final int INITIAL_TABLE_SIZE = 8;
   public static final double MAX_LOAD_FACTOR = 1.0;
   public LinkedList<LinkedList<Pair<K,V>>> mList;
-  int size;
-  int tableSize;
+  public int size = 0;
+  public int tableSize;
   
   public SeparateChainingMap() {
 	  mList = new LinkedList<LinkedList<Pair<K,V>>>();
@@ -35,7 +35,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       cList.addFirst(pair);
       size++;
-      if (size/tableSize > MAX_LOAD_FACTOR)
+      if (size/tableSize > (MAX_LOAD_FACTOR-1))
     	  upsize();
   }
 
@@ -46,7 +46,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
     	  hashCode += tableSize -1;
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       for (Pair<K,V> pair : cList){
-    	  if (pair.key == key)
+    	  if (pair.key.equals(key))
     		  return pair.value;    			  
       }
       return null;
@@ -70,15 +70,14 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
   public static void main(String [ ] args){
 	  SeparateChainingMap<Integer, String> map = new SeparateChainingMap<>();
 	  map.put(3, "Jasmine");
-	  System.out.println(map.getSize());
 	  map.put(9, "Rachel");
-	  System.out.println(map.getSize());
-	  System.out.println(map.getTableSize());
 	  map.put(10, "Charlie");
 	  System.out.println(map.getSize());
+	  System.out.println(map.getTableSize());
 	  map.put(-14, "Amy");
 	  System.out.println(map.getSize());
+	  map.put(-16, "Amy");
+	  System.out.println(map.getSize());
 	  System.out.println(map.getTableSize());
-	  System.out.println(map.get(9));
   }  
 }
