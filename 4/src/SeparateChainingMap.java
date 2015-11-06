@@ -35,7 +35,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       cList.addFirst(pair);
       size++;
-      if (size/tableSize > (MAX_LOAD_FACTOR-1))
+      if (size/tableSize > MAX_LOAD_FACTOR)
     	  upsize();
   }
 
@@ -72,6 +72,8 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
 	  map.put(3, "Jasmine");
 	  System.out.println(map.getSize());
 	  map.put(9, "Rachel");
+	  System.out.println(map.getSize());
+	  System.out.println(map.getTableSize());
 	  map.put(10, "Charlie");
 	  System.out.println(map.getSize());
 	  map.put(-14, "Amy");
