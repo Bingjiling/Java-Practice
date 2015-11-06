@@ -21,4 +21,13 @@ public class AvlMap<K extends Comparable<? super K>, V> implements Map<K, V> {
       else
     	  return pair.value;
   }
+  
+  public Pair<K,V> getPair(K key){
+	  Pair<K,V>pair = new Pair<>(key, null);
+      pair = aT.get(pair);
+      if(pair == null)
+    	  return null;
+      else
+    	  return pair;
+  }
 }
