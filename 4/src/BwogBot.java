@@ -12,10 +12,10 @@ public class BwogBot {
    *  and 2N for rehash, so the total time for separate Chaining is 3N. O(N) < O(Nlog(N))
    *  So SeparateChainingMap is better.
    */
-  public SeparateChainingMap<String, Integer> map;
+  public AvlMap<String, Integer> map;
   
   public BwogBot() {
-	  map = new SeparateChainingMap<String, Integer>();
+	  map = new AvlMap<String, Integer>();
   }
 
   public void readFile(String fileName) throws IOException {
@@ -53,13 +53,13 @@ public class BwogBot {
   }
 
   public Map<String, Integer> getMap() {
-    return null;
+    return map;
   }
 
   public static void main(String[] args) throws IOException {
     BwogBot bot = new BwogBot();
     bot.readFile("comments.txt");
-    System.out.println(bot.getCount("hamdel")); // because linan's hungry now
-    System.out.println(bot.getNMostPopularWords(100));
+//    System.out.println(bot.getCount("hamdel")); // because linan's hungry now
+//    System.out.println(bot.getNMostPopularWords(100));
   }
 }
