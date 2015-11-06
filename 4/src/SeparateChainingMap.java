@@ -34,8 +34,10 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
     	  hashCode += tableSize;
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       for (Pair<K,V> pairs : cList){
-    	  if (pairs.key == key)
+    	  if (pairs.key == key){
+    		  pairs.value = value;
     		  return;
+    	  }	  
       }
       cList.addFirst(pair);
       size++;
