@@ -39,7 +39,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
       }
       cList.addFirst(pair);
       size++;
-      if (size/tableSize > (MAX_LOAD_FACTOR-1))
+      if ((size-1)/tableSize >= MAX_LOAD_FACTOR)
     	  upsize();
   }
 
@@ -75,7 +75,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
 	  SeparateChainingMap<Integer, String> map = new SeparateChainingMap<>();
 	  map.put(3, "Jasmine");
 	  map.put(-9, "Rachel");
-	  map.put(-9, "Charlie");
+	  map.put(9, "Charlie");
 	  System.out.println(map.getSize());
 	  System.out.println(map.getTableSize());
 	  map.put(-14, "Amy");
