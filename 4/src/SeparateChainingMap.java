@@ -29,9 +29,9 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
   public void put(K key, V value) {
       Pair<K,V> pair = new Pair<>(key, value);
       int hashCode = key.hashCode();
-      hashCode = hashCode % (tableSize-1);
+      hashCode = hashCode % tableSize;
       if (hashCode < 0)
-    	  hashCode += tableSize - 1;
+    	  hashCode += tableSize;
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       for (Pair<K,V> pairs : cList){
     	  if (pairs.key == key)
@@ -45,9 +45,9 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
 
   public V get(K key) {
 	  int hashCode = key.hashCode();
-      hashCode = hashCode % (tableSize-1);
+      hashCode = hashCode % tableSize;
       if (hashCode < 0)
-    	  hashCode += tableSize -1;
+    	  hashCode += tableSize;
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       for (Pair<K,V> pair : cList){
     	  if (pair.key.equals(key))
