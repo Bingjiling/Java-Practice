@@ -1,6 +1,6 @@
 public class AvlMap<K extends Comparable<? super K>, V> implements Map<K, V> {
 
-	AvlTree<Pair<K,V>> aT;
+  public AvlTree<Pair<K,V>> aT;
 	
   public AvlMap() {
 	  aT = new AvlTree<Pair<K,V>>();
@@ -16,6 +16,9 @@ public class AvlMap<K extends Comparable<? super K>, V> implements Map<K, V> {
   public V get(K key) {
 	  Pair<K,V>pair = new Pair<>(key, null);
       pair = aT.get(pair);
-      return pair.value;
+      if(pair == null)
+    	  return null;
+      else
+    	  return pair.value;
   }
 }
