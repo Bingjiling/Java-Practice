@@ -56,6 +56,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
 	  LinkedList<LinkedList<Pair<K,V>>> oList = mList;
       mList = new LinkedList<LinkedList<Pair<K,V>>>();
       tableSize *= SCALE_FACTOR;
+      size = 0;
       for(int i = 0; i < tableSize; i++){
 		  mList.add(i, new LinkedList<Pair<K,V>>());
 	  }
@@ -69,8 +70,13 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
   public static void main(String [ ] args){
 	  SeparateChainingMap<Integer, String> map = new SeparateChainingMap<>();
 	  map.put(3, "Jasmine");
+	  System.out.println(map.getSize());
 	  map.put(9, "Rachel");
 	  map.put(10, "Charlie");
+	  System.out.println(map.getSize());
+	  map.put(-14, "Amy");
+	  System.out.println(map.getSize());
+	  System.out.println(map.getTableSize());
 	  System.out.println(map.get(9));
   }  
 }
