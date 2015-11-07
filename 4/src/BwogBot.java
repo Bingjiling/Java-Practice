@@ -45,7 +45,7 @@ public class BwogBot {
   }
 
   public int getCount(String word) {
-    return 0;
+    return map.get(word);
   }
 
   public List<String> getNMostPopularWords(int n) {
