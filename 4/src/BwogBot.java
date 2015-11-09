@@ -13,6 +13,7 @@ public class BwogBot {
    *  So SeparateChainingMap is better.
    */
   public AvlMap<String, Integer> map;
+  public List<String> s;
   
   public BwogBot() {
 	  map = new AvlMap<String, Integer>();
@@ -49,7 +50,9 @@ public class BwogBot {
   }
 
   public List<String> getNMostPopularWords(int n) {
-    return null;
+    for (Pair<String,Integer> pair : map){
+    	
+    }
   }
 
   public Map<String, Integer> getMap() {
