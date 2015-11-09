@@ -6,11 +6,7 @@ import java.util.Scanner;
 public class BwogBot {
   
   /*
-   *  SeparateChainingMap is faster. For example, if we start at table size N and 
-   *  insert N items till the size reach 2N and we have to rehash. If we use AvlTree
-   *  the total time would be O(NlogN). While for SeparateChainingMap is N for inserting
-   *  and 2N for rehash, so the total time for separate Chaining is 3N. O(N) < O(Nlog(N))
-   *  So SeparateChainingMap is better.
+   *  AvlMap is better. For Separate chaining map, rehashing is painful. 
    */
   public AvlMap<String, Integer> map;
   public List<String> s;
@@ -50,9 +46,7 @@ public class BwogBot {
   }
 
   public List<String> getNMostPopularWords(int n) {
-    for (Pair<String,Integer> pair : map){
-    	
-    }
+    return null;
   }
 
   public Map<String, Integer> getMap() {
