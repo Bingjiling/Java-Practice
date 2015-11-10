@@ -34,14 +34,14 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
     	  hashCode += tableSize;
       LinkedList<Pair<K,V>> cList = mList.get(hashCode);
       for (Pair<K,V> pairs : cList){
-    	  if (pairs.key == key){
+    	  if (pairs.compareTo(pair) == 0){
     		  pairs.value = value;
     		  return;
     	  }	  
       }
       cList.addFirst(pair);
       size++;
-      if ((size-1)/tableSize >= MAX_LOAD_FACTOR)
+      if (((double)size)/tableSize > MAX_LOAD_FACTOR)
     	  upsize();
   }
 
@@ -59,6 +59,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
   }
 
   public void upsize() {
+	  System.out.println(size);
 	  LinkedList<LinkedList<Pair<K,V>>> oList = mList;
       mList = new LinkedList<LinkedList<Pair<K,V>>>();
       tableSize *= SCALE_FACTOR;
@@ -71,6 +72,7 @@ public class SeparateChainingMap<K extends Comparable<? super K>, V> implements 
     		  this.put(pair.key, pair.value);
     	  }
       }
+      System.out.println("End");
   }
   
   public static void main(String [ ] args){

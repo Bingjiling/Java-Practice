@@ -8,11 +8,11 @@ public class BwogBot {
   /*
    *  AvlMap is better. For Separate chaining map, rehashing is painful. 
    */
-  public AvlMap<String, Integer> map;
+  public SeparateChainingMap<String, Integer> map;
   public List<String> s;
   
   public BwogBot() {
-	  map = new AvlMap<String, Integer>();
+	  map = new SeparateChainingMap<String, Integer>();
   }
 
   public void readFile(String fileName) throws IOException {
