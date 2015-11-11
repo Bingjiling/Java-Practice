@@ -1,12 +1,15 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BwogBot {
   
   /*
-   *  AvlMap is better. For Separate chaining map, rehashing is painful. 
+   *  Separate chaining map is better. The average running time for put is O(1) for
+   *  separate chaining map. While for AvlMap, the average running time for put
+   *  is O(logN).
    */
   public SeparateChainingMap<String, Integer> map;
   public List<String> s;
@@ -46,7 +49,30 @@ public class BwogBot {
   }
 
   public List<String> getNMostPopularWords(int n) {
-    return null;
+    LinkedList<Pair<String, Integer>> l = new LinkedList<>();
+    for(int i = 0; i<n; i++){
+    	l.add(null);
+    }
+    for (LinkedList<Pair<String, Integer>> cList : map.mList){
+    	for (Pair<String, Integer> pair : cList){
+    		outer:
+    		for (int i = 0; i < n; i++){
+    			if (l.get(i) == null){
+    				l.add(i, pair);
+    			}else if (pair.value > l.get(i).value){
+    				l.add(i, pair);
+    				break outer;
+    			}
+    		}
+    	if (l.size() > n)
+    		l.removeLast();
+    	}
+    }
+    List<String> output = new LinkedList<>();
+    for (Pair<String, Integer> p : l){
+    	output.add(p.key);
+     }
+    return output;
   }
 
   public Map<String, Integer> getMap() {
@@ -56,7 +82,9 @@ public class BwogBot {
   public static void main(String[] args) throws IOException {
     BwogBot bot = new BwogBot();
     bot.readFile("comments.txt");
-//    System.out.println(bot.getCount("hamdel")); // because linan's hungry now
-//    System.out.println(bot.getNMostPopularWords(100));
+    System.out.println(bot.getCount("hamdel")); // because linan's hungry now
+//    LinkedList<Integer> l = new LinkedList<>();
+//    System.out.println(l.);
+    System.out.println(bot.getNMostPopularWords(100));
   }
 }
