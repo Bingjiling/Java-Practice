@@ -47,7 +47,15 @@ public class BwogBot {
   public int getCount(String word) {
     return map.get(word);
   }
-
+  
+  /**
+   * Not a good way to analysis text. Most of the words showed up in the most popular
+   * words are probably popular in any other text. We can try to analysis text by
+   * paying attention to more characteristic words. For example, adj
+   * words might be more representative.
+   * @param n
+   * @return
+   */
   public List<String> getNMostPopularWords(int n) {
     LinkedList<Pair<String, Integer>> l = new LinkedList<>();
     for(int i = 0; i<n; i++){
