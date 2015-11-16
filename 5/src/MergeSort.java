@@ -1,7 +1,5 @@
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class MergeSort {
 
@@ -28,6 +26,7 @@ public class MergeSort {
             }  
 
             while( leftPos <= leftEnd ) {   // Copy rest of first half
+//            	System.out.println("leftend"+leftEnd);
                 tmpArray[tmpPos++] = a[leftPos++];
             }
 
@@ -74,14 +73,17 @@ public class MergeSort {
          * Problem 5: Iterative Bottom-up Merge Sort
          */
         public static void mergeSortB(Integer[] inputArray) {
-        	Queue<Integer> q = new LinkedList<Integer>();
-        	for (int i = 0; i < inputArray.length; i++){
-        		q.add(i);
+        	Integer[] temp = new Integer[inputArray.length];
+        	System.out.println("length" + inputArray.length);
+        	for(int blockSize = 1; blockSize < inputArray.length; blockSize*=2){
+        		for(int i = 0; i < inputArray.length; i += blockSize*2){
+        			if(i+blockSize*2 < inputArray.length){
+        				merge(inputArray, temp, i, i+blockSize, i+blockSize*2-1);
+        			}else if(inputArray.length - i > blockSize){
+        				merge(inputArray, temp, i, i+blockSize, inputArray.length-1);			
+        			}   				
+        		}
         	}
-        	while(!q.isEmpty()){
-        		
-        	}
-            return;
         }
 
 
@@ -105,7 +107,7 @@ public class MergeSort {
         public static void main(String[] args) {
             // Weiss sort
             Integer[] a = {1,4,9,131,0,2,7,19,245,18};
-            MergeSort.mergeSort(a);
+            MergeSort.mergeSortB(a);
             System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
         }
 
