@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class MergeSort {
 
@@ -72,6 +74,13 @@ public class MergeSort {
          * Problem 5: Iterative Bottom-up Merge Sort
          */
         public static void mergeSortB(Integer[] inputArray) {
+        	Queue<Integer> q = new LinkedList<Integer>();
+        	for (int i = 0; i < inputArray.length; i++){
+        		q.add(i);
+        	}
+        	while(!q.isEmpty()){
+        		
+        	}
             return;
         }
 
