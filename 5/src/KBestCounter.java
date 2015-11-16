@@ -1,5 +1,4 @@
 import java.util.PriorityQueue;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class KBestCounter<T extends Comparable<T>> {
 
     public List<T> kbest() {
         List<T> output = new LinkedList<T>(); 
-        while(heap.poll()!=null){
-        	output.add(heap.poll());       	
+        while(heap.peek()!=null){
+        	output.add(0, heap.poll());       	
         }
         return output;
     } 
@@ -39,7 +38,9 @@ public class KBestCounter<T extends Comparable<T>> {
     	KBestCounter <Integer> counter = new KBestCounter<>( k );
     	for ( int i = 0; i < 100; i ++) 
     		  counter.count(i);
+    	System.out.println(counter.heap);
     	List<Integer> kbest = counter.kbest();
-    	System.out.println(Arrays.toString(kbest.toArray()));
+    	System.out.println(kbest);
+    	
     }
 }
