@@ -27,9 +27,11 @@ public class KBestCounter<T extends Comparable<T>> {
 
     public List<T> kbest() {
         List<T> output = new LinkedList<T>();
-        for(T x : heap){
-        	output.add(0, x);
+        while(heap.peek()!=null){
+        	output.add(0, heap.poll());
         }
+        for(T x : output)
+        	heap.add(x);
         return output;
     } 
     
