@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MergeSort {
@@ -100,7 +102,23 @@ public class MergeSort {
          * Use this method to implement sortList.
          */
         public static List<Integer> mergeLists(List<Integer> left, List<Integer> right) { 
-            return null;
+            List<Integer> l = new LinkedList<Integer>(); 
+            Iterator<Integer> iterLeft = left.iterator();
+            Iterator<Integer> iterRight = right.iterator();
+            while(iterLeft.hasNext() && iterRight.hasNext()){
+            	if(iterLeft.next() <= iterRight.next()){
+            		l.add(iterLeft.next());
+            	}else{
+            		l.add(iterRight.next());
+            	}
+            }
+            while(iterLeft.hasNext()){
+            	l.add(iterLeft.next());
+            }
+            while(iterRight.hasNext()){
+            	l.add(iterRight.next());
+            }
+            return l;
         }
         
  
