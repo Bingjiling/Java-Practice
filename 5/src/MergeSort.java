@@ -52,6 +52,7 @@ public class MergeSort {
             Integer[] tmpArray = new Integer[a.length];
             mergeSort(a, tmpArray, 0, a.length - 1 );
         }
+        
         /**
          * Internal method that makes recursive calls. 
          * This is part of the MergeSort algorithm from from Weiss, Data Structures and Algorithm Analysis in Java, 
@@ -105,18 +106,44 @@ public class MergeSort {
             List<Integer> l = new LinkedList<Integer>(); 
             Iterator<Integer> iterLeft = left.iterator();
             Iterator<Integer> iterRight = right.iterator();
-            while(iterLeft.hasNext() && iterRight.hasNext()){
-            	if(iterLeft.next() <= iterRight.next()){
-            		l.add(iterLeft.next());
+            Integer a = iterLeft.next();
+        	Integer b = iterRight.next();
+        	
+            while(a!=null && b!=null){
+//            	System.out.println("hey");
+            	if(a > b){
+            		l.add(b);
+            		if(iterRight.hasNext()){
+            			b = iterRight.next();
+            		}else{
+            			b = null;
+            		}
             	}else{
-            		l.add(iterRight.next());
+            		l.add(a);
+            		if(iterLeft.hasNext()){
+            			a = iterLeft.next();
+            		}else{
+            			a = null;
+            		}
             	}
             }
-            while(iterLeft.hasNext()){
-            	l.add(iterLeft.next());
+            
+            while(a!=null){
+            	l.add(a);
+        		if(iterLeft.hasNext()){
+        			a = iterLeft.next();
+        		}else{
+        			a = null;
+        		}
             }
-            while(iterRight.hasNext()){
-            	l.add(iterRight.next());
+            
+            while(b!=null){
+            	l.add(b);
+        		if(iterLeft.hasNext()){
+        			b = iterLeft.next();
+        		}else{
+        			b = null;
+        		}
             }
             return l;
         }
@@ -124,9 +151,15 @@ public class MergeSort {
  
         public static void main(String[] args) {
             // Weiss sort
-            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
-            MergeSort.mergeSortB(a);
-            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
+//            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
+//            MergeSort.mergeSortB(a);
+//            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
+            List<Integer> l1 = new LinkedList<Integer>();
+            List<Integer> l2 = new LinkedList<Integer>();
+            l1.add(4);
+            l1.add(5);
+            l2.add(3);
+            l2.add(8);
+            System.out.println(MergeSort.mergeLists(l1,l2));
         }
-
 }
