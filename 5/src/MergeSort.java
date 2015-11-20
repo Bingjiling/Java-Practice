@@ -77,7 +77,7 @@ public class MergeSort {
          */
         public static void mergeSortB(Integer[] inputArray) {
         	Integer[] temp = new Integer[inputArray.length];
-        	System.out.println("length" + inputArray.length);
+//        	System.out.println("length" + inputArray.length);
         	for(int blockSize = 1; blockSize < inputArray.length; blockSize*=2){
         		for(int i = 0; i < inputArray.length; i += blockSize*2){
         			if(i+blockSize*2 < inputArray.length){
@@ -94,7 +94,20 @@ public class MergeSort {
          * Problem 6: Merge Sort for Lists, Without Side Effects
          */
         public static List<Integer> sortList(List<Integer> inputList) {
-            return null; 
+        	List<Integer> outputList = new LinkedList<Integer>();
+            return sortList(inputList, outputList);
+        }
+        
+        private static List<Integer> sortList(List<Integer> inputList, List<Integer> outputList){
+            if(inputList.size()>1){
+            	int center = inputList.size()/2;
+                List<Integer> leftList = sortList( inputList.subList(0, center), outputList);
+                List<Integer> rightList = sortList(inputList.subList(center,inputList.size()), outputList);
+                outputList = mergeLists(leftList, rightList);
+            }else if(inputList.size()==1){
+            	return inputList;
+            }
+            return outputList;
         }
         
 
@@ -106,9 +119,15 @@ public class MergeSort {
             List<Integer> l = new LinkedList<Integer>(); 
             Iterator<Integer> iterLeft = left.iterator();
             Iterator<Integer> iterRight = right.iterator();
-            Integer a = iterLeft.next();
-        	Integer b = iterRight.next();
-        	
+            Integer a = null;
+            Integer b = null;
+            if(iterLeft.hasNext()){
+            	a = iterLeft.next();
+            }
+            if(iterRight.hasNext()){
+            	b = iterRight.next();
+            }
+            
             while(a!=null && b!=null){
 //            	System.out.println("hey");
             	if(a > b){
@@ -158,8 +177,10 @@ public class MergeSort {
             List<Integer> l2 = new LinkedList<Integer>();
             l1.add(4);
             l1.add(5);
+            l1.add(3);
             l2.add(3);
             l2.add(8);
-            System.out.println(MergeSort.mergeLists(l1,l2));
+            System.out.println(sortList(l2));
+            System.out.println(sortList(l1));
         }
 }
