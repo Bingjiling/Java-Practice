@@ -108,6 +108,7 @@ public class MergeSort {
             }else if(inputList.size()==1){
             	return inputList;
             }
+            System.out.println(outputList);
             return outputList;
         }
         
@@ -179,13 +180,18 @@ public class MergeSort {
             l1.add(4);
             l1.add(5);
             l1.add(3);
+            l1.add(7);
+            l1.add(8);
+            l1.add(1);
+            l1.add(2);
+            l1.add(6);
             l2.add(3);
             l2.add(8);
-            System.out.println(sortList(l2));
+//            System.out.println(sortList(l2));
             System.out.println(sortList(l1));
-            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
-            MergeSort.mergeSort(a);
-            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
+//            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
+//            MergeSort.mergeSort(a);
+//            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
         }
 }
 
