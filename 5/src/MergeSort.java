@@ -148,6 +148,15 @@ public class MergeSort {
             	}
             }
             
+            while(b!=null){
+            	l.add(b);
+        		if(iterRight.hasNext()){
+        			b = iterRight.next();
+        		}else{
+        			b = null;
+        		}
+            }
+            
             while(a!=null){
             	l.add(a);
         		if(iterLeft.hasNext()){
@@ -155,24 +164,43 @@ public class MergeSort {
         		}else{
         			a = null;
         		}
-            }
-            
-            while(b!=null){
-            	l.add(b);
-        		if(iterLeft.hasNext()){
-        			b = iterLeft.next();
-        		}else{
-        			b = null;
-        		}
-            }
+            }     
             return l;
         }
         
  
         public static void main(String[] args) {
-            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
-            MergeSort.mergeSortB(a);
-            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
+            // Weiss sort
+//            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
+//            MergeSort.mergeSortB(a);
+//            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
+            List<Integer> l1 = new LinkedList<Integer>();
+            List<Integer> l2 = new LinkedList<Integer>();
+            l1.add(4);
+            l1.add(5);
+            l1.add(3);
+            l1.add(7);
+            l1.add(8);
+            l1.add(9);
+            l1.add(14);
+            l1.add(13);
+            l1.add(10);
+            l1.add(11);
+            l1.add(1);
+            l1.add(2);
+            
+//            
+//            
+//            
+//            l2.add(3);
+//            l2.add(8);
+            
+            System.out.println(sortList(l1));
+//            System.out.println(mergeLists(l1,l2));
+            
+//            Integer[] a = {1,4,9,131,0,2,7,19,245,18};
+//            MergeSort.mergeSort(a);
+//            System.out.println(Arrays.toString(a)); // Should be [0, 1, 2, 4, 7, 9, 18, 19, 131, 245]
         }
 }
 
