@@ -108,7 +108,6 @@ public class MergeSort {
             }else if(inputList.size()==1){
             	return inputList;
             }
-            System.out.println(outputList);
             return outputList;
         }
         
@@ -182,9 +181,17 @@ public class MergeSort {
             l1.add(3);
             l1.add(7);
             l1.add(8);
+            l1.add(9);
+            l1.add(14);
+            l1.add(13);
+            l1.add(10);
+            l1.add(11);
             l1.add(1);
             l1.add(2);
-            l1.add(6);
+            
+            
+            
+            
             l2.add(3);
             l2.add(8);
 //            System.out.println(sortList(l2));
