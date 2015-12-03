@@ -110,12 +110,19 @@ public class Graph {
     	  v.visited = true;
     	  for(Edge e : v.getEdges()){
     		  Vertex v1 = e.targetVertex;
-    		  if(v1.visited == false && (!q.contains(v1))){
+    		  if(v1.visited == false && (!q.contains(v1.name))){
     			  v1.backpointer = v;
-//    			  System.out.println(v1.name + v1.backpointer.name);
+//    			  System.out.println(v1.name + " back to " + v1.backpointer.name);
     			  v1.cost = v.cost + 1;
                   q.add(v1.name);
     		  }
+//    		  Vertex v2 = e.sourceVertex;
+//    		  if(v2.visited == false && (!q.contains(v2))){
+//    			  v2.backpointer = v;
+////    			  System.out.println(v1.name + v1.backpointer.name);
+//    			  v2.cost = v.cost + 1;
+//                  q.add(v2.name);
+//    		  }
     	  }
       }
   }
@@ -187,17 +194,21 @@ public class Graph {
     g.addVertex(new Vertex("v2", 1, 0));
     g.addVertex(new Vertex("v3", 1, 1));
 
-    g.addEdge("v0", "v1");
-    g.addEdge("v1", "v2");
-    g.addEdge("v2", "v3");
-    g.addEdge("v3", "v0");
-    g.addEdge("v0", "v2");
-    g.addEdge("v1", "v3");
+    g.addUndirectedEdge("v0", "v1",1.0);
+    g.addUndirectedEdge("v1", "v2",1.0);
+    g.addUndirectedEdge("v2", "v3",1.0);
+    g.addUndirectedEdge("v3", "v0",1.0);
+    g.addUndirectedEdge("v0", "v2",1.0);
+    g.addUndirectedEdge("v1", "v3",1.0);
 //    System.out.println(g.getVertex("v0").getEdges());
 
 //    g.printAdjacencyList();
-    
+//    DisplayGraph display = new DisplayGraph(g);
+//    display.setVisible(true);
     g = g.getUnweightedShortestPath("v0", "v3");
+//    System.out.println("----------");
+//    System.out.println(g.getVertex("v3").backpointer);
+//    g.printAdjacencyList();
 //    System.out.println(g.getVertex("v0").getEdges());
 //    g.printAdjacencyList();
     DisplayGraph display = new DisplayGraph(g);
