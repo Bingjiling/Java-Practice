@@ -1,7 +1,9 @@
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 public class Graph {
 
@@ -96,7 +98,25 @@ public class Graph {
 
   /** BFS */
   public void doBfs(String s) {
-      
+      for(Vertex v : getVertices()){
+    	  v.visited = false;
+      }
+      Queue<String> q = new LinkedList<>();
+      getVertex(s).cost = 0;
+      getVertex(s).backpointer = null;
+      q.add(s);
+      while(!q.isEmpty()){
+    	  Vertex v = getVertex(q.poll());
+    	  v.visited = true;
+    	  for(Edge e : v.getEdges()){
+    		  Vertex v1 = e.targetVertex;
+    		  if(v1.visited == false){
+    			  v1.backpointer = v;
+    			  v1.cost = v.cost + 1;
+                  q.add(v1.name);
+    		  }
+    	  }
+      }
   }
   
   public Graph getUnweightedShortestPath(String s, String t) {
