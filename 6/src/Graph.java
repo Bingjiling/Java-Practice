@@ -110,8 +110,9 @@ public class Graph {
     	  v.visited = true;
     	  for(Edge e : v.getEdges()){
     		  Vertex v1 = e.targetVertex;
-    		  if(v1.visited == false){
+    		  if(v1.visited == false && (!q.contains(v1))){
     			  v1.backpointer = v;
+//    			  System.out.println(v1.name + v1.backpointer.name);
     			  v1.cost = v.cost + 1;
                   q.add(v1.name);
     		  }
@@ -120,16 +121,26 @@ public class Graph {
   }
   
   public Graph getUnweightedShortestPath(String s, String t) {
+	doBfs(s);
     Graph g = new Graph();
     for(Vertex v : getVertices()){
-    	g.addVertex(v);
+    	Vertex w = new Vertex(v.name);
+    	w.posX = v.posX;
+    	w.posY = v.posY;
+    	g.addVertex(w);
     }
-    g.doBfs(s);
+//    System.out.println(g.getVertex("v0").getEdges());
+    
     Vertex v = this.getVertex(t);
+//    System.out.println(v.name);
+//    System.out.println(v.backpointer.name);
     while(v.backpointer != null){
+//    	System.out.println(v.backpointer);
     	g.addUndirectedEdge(v.backpointer.name, v.name, 1.0);
     	v = v.backpointer;
+//    	System.out.println(v.name);
     }
+//    System.out.println(g.getVertex("v0").getEdges());
     return g;
   }
 
@@ -182,11 +193,16 @@ public class Graph {
     g.addEdge("v3", "v0");
     g.addEdge("v0", "v2");
     g.addEdge("v1", "v3");
+//    System.out.println(g.getVertex("v0").getEdges());
 
-    g.printAdjacencyList();
-
+//    g.printAdjacencyList();
+    
+    g = g.getUnweightedShortestPath("v0", "v3");
+//    System.out.println(g.getVertex("v0").getEdges());
+//    g.printAdjacencyList();
     DisplayGraph display = new DisplayGraph(g);
     display.setVisible(true);
+    
   }
 
 }
