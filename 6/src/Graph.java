@@ -120,7 +120,17 @@ public class Graph {
   }
   
   public Graph getUnweightedShortestPath(String s, String t) {
-    return null; // TODO
+    Graph g = new Graph();
+    for(Vertex v : getVertices()){
+    	g.addVertex(v);
+    }
+    g.doBfs(s);
+    Vertex v = this.getVertex(t);
+    while(v.backpointer != null){
+    	g.addUndirectedEdge(v.backpointer.name, v.name, 1.0);
+    	v = v.backpointer;
+    }
+    return g;
   }
 
   /** Dijkstra's */
