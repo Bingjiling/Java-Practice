@@ -1,5 +1,6 @@
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Graph {
@@ -73,21 +74,29 @@ public class Graph {
    ****************************/ 
 
   public void addUndirectedEdge(String s, String t, double cost) {
-    addEdge(s, t);
-    addEdge(t, s);
+    addEdge(s, t, cost);
+    addEdge(t, s, cost);
   }
 
   public double computeEuclideanCost(double ux, double uy, double vx, double vy) {
-    return 0.0; // TODO
+    return Math.cbrt(Math.pow((ux-vx), 2)+Math.pow((uy-vy), 2));
   }
 
   public void computeAllEuclideanCosts() {
-    return; // TODO
+    for (Vertex v : getVertices()){
+    	for (Edge adj : v.getEdges()){
+    		double ux = adj.sourceVertex.posX;
+    		double uy = adj.sourceVertex.posY;
+    		double vx = adj.targetVertex.posX;
+    		double vy = adj.targetVertex.posY;
+    		adj.cost = computeEuclideanCost(ux,uy,vx,vy);
+    	}	
+    }
   }
 
   /** BFS */
   public void doBfs(String s) {
-    return; // TODO
+      
   }
   
   public Graph getUnweightedShortestPath(String s, String t) {
