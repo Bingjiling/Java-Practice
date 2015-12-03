@@ -143,7 +143,7 @@ public class Graph {
 //    System.out.println(v.backpointer.name);
     while(v.backpointer != null){
 //    	System.out.println(v.backpointer);
-    	g.addUndirectedEdge(v.backpointer.name, v.name, 1.0);
+    	g.addEdge(v.backpointer.name, v.name);
     	v = v.backpointer;
 //    	System.out.println(v.name);
     }
