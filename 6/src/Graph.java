@@ -79,7 +79,7 @@ public class Graph {
   }
 
   public double computeEuclideanCost(double ux, double uy, double vx, double vy) {
-    return Math.cbrt(Math.pow((ux-vx), 2)+Math.pow((uy-vy), 2));
+    return Math.cbrt((ux-vx)*(ux-vx)+(uy-vy)*(uy-vy));
   }
 
   public void computeAllEuclideanCosts() {
