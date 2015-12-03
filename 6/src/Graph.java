@@ -110,7 +110,8 @@ public class Graph {
     	  v.visited = true;
     	  for(Edge e : v.getEdges()){
     		  Vertex v1 = e.targetVertex;
-    		  if(v1.visited == false && (!q.contains(v1.name))){
+    		  if(v1.visited == false){
+    			  v1.visited = true;
     			  v1.backpointer = v;
 //    			  System.out.println(v1.name + " back to " + v1.backpointer.name);
     			  v1.cost = v.cost + 1;
