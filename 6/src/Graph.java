@@ -223,11 +223,46 @@ public class Graph {
 
   /** Prim's */
   public void doPrim(String s) {
-    return; // TODO
+	  PriorityQueue<Pair> q = new PriorityQueue<>();
+      for (Vertex v : getVertices()){
+   	   v.cost = Double.POSITIVE_INFINITY;
+   	   v.visited = false;
+      }
+      Pair p = new Pair(0,s);
+      q.add(p);
+      while(!q.isEmpty()){
+   	   Pair near = q.poll();
+   	   Vertex v = near.getV();
+   	   v.cost = near.cost;
+		   v.visited = true;
+		   for(Edge e : v.getEdges()){
+			   Vertex v1 = e.targetVertex;
+			   if(v1.visited == false){
+				   if(e.cost < v1.cost){
+					   v1.cost = e.cost;
+					   v1.backpointer = v;
+					   q.add(new Pair(v1.cost, v1.name));
+				   }
+			   }
+	   }
+  }
   }
 
   public Graph getMinimumSpanningTree(String s) {
-    return null; // TODO
+	  doDijkstra(s);
+	    Graph g = new Graph();
+	    for(Vertex v : getVertices()){
+	    	Vertex w = new Vertex(v.name);
+	    	w.posX = v.posX;
+	    	w.posY = v.posY;
+	    	g.addVertex(w);
+	    }
+	    for(Vertex v : getVertices()){
+	    	if(v.backpointer != null){
+	    		g.addEdge(v.backpointer.name, v.name);
+	    	}
+	    }
+	    return g;
   }
 
   /*************************/
@@ -266,7 +301,7 @@ public class Graph {
 //    g.printAdjacencyList();
 //    DisplayGraph display = new DisplayGraph(g);
 //    display.setVisible(true);
-    g = g.getUnweightedShortestPath("v0", "v3");
+    g = g.getMinimumSpanningTree("v0");
 //    System.out.println("----------");
 //    System.out.println(g.getVertex("v3").backpointer);
 //    g.printAdjacencyList();

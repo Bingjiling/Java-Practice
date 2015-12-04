@@ -10,5 +10,4 @@ public class TestDijkstra {
       DisplayGraph display = new DisplayGraph(g);
       display.setVisible(true);
   }
-
 }

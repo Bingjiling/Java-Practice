@@ -102,4 +102,3 @@ Write a testing class `TestPrim` that reads in a map file, runs getMinimumSpanni
 `$ java  TestPrim  ttrvertices.txt  ttredges.txt  KansasCity`
 
 
-tt
