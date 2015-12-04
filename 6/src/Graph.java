@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Graph {
@@ -137,28 +138,87 @@ public class Graph {
     	w.posY = v.posY;
     	g.addVertex(w);
     }
-//    System.out.println(g.getVertex("v0").getEdges());
-    
     Vertex v = this.getVertex(t);
-//    System.out.println(v.name);
-//    System.out.println(v.backpointer.name);
     while(v.backpointer != null){
-//    	System.out.println(v.backpointer);
     	g.addEdge(v.backpointer.name, v.name);
     	v = v.backpointer;
-//    	System.out.println(v.name);
     }
-//    System.out.println(g.getVertex("v0").getEdges());
     return g;
   }
 
   /** Dijkstra's */
+  
+  private class Pair implements Comparable<Pair>{
+	  
+	  public double cost;
+	  public String vertexName;
+	  
+	  public Pair(double cost, String vertexName){
+		  this.cost = cost;
+		  this.vertexName = vertexName;
+	  }
+	  
+	  
+	  public Vertex getV(){
+		  return getVertex(vertexName);
+	  }
+	  
+	  public int compareTo(Pair p){
+		  int i = 0;
+		  if(this.cost > p.cost){
+			  i = 1;
+		  }else if(this.cost < p.cost){
+			  i = -1;
+		  }
+		  return i;
+	  }
+//	  public String getName(){
+//		  return vertexName;
+//	  }
+  }
   public void doDijkstra(String s) {
-    return; // TODO
+       PriorityQueue<Pair> q = new PriorityQueue<>();
+       for (Vertex v : getVertices()){
+    	   v.cost = Double.POSITIVE_INFINITY;
+    	   v.visited = false;
+       }
+       Pair p = new Pair(0,s);
+       q.add(p);
+       while(!q.isEmpty()){
+    	   Pair near = q.poll();
+    	   Vertex v = near.getV();
+    	   v.cost = near.cost;
+		   v.visited = true;
+		   for(Edge e : v.getEdges()){
+			   Vertex v1 = e.targetVertex;
+			   if(v1.visited == false){
+				   if(v.cost + e.cost < v1.cost){
+					   v1.cost = v.cost + e.cost;
+					   v1.backpointer = v;
+					   q.add(new Pair(v1.cost, v1.name));
+				   }
+			   }
+	   }
+   }
   }
 
+	  
+
   public Graph getWeightedShortestPath(String s, String t) {
-    return null; // TODO
+	  doDijkstra(s);
+	    Graph g = new Graph();
+	    for(Vertex v : getVertices()){
+	    	Vertex w = new Vertex(v.name);
+	    	w.posX = v.posX;
+	    	w.posY = v.posY;
+	    	g.addVertex(w);
+	    }
+	    Vertex v = this.getVertex(t);
+	    while(v.backpointer != null){
+	    	g.addEdge(v.backpointer.name, v.name);
+	    	v = v.backpointer;
+	    }
+	    return g;
   }
 
   /** Prim's */
