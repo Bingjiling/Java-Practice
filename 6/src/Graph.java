@@ -259,7 +259,7 @@ public class Graph {
 	    }
 	    for(Vertex v : getVertices()){
 	    	if(v.backpointer != null){
-	    		g.addEdge(v.name, v.backpointer.name);
+	    		g.addEdge(v.backpointer.name, v.name);
 	    	}
 	    }
 	    return g;
@@ -311,5 +311,4 @@ public class Graph {
     display.setVisible(true);
     
   }
-
 }
