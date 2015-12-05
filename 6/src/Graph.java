@@ -244,12 +244,12 @@ public class Graph {
 					   q.add(new Pair(v1.cost, v1.name));
 				   }
 			   }
-	   }
-  }
+	      }
+      }
   }
 
   public Graph getMinimumSpanningTree(String s) {
-	  doDijkstra(s);
+	    doPrim(s);
 	    Graph g = new Graph();
 	    for(Vertex v : getVertices()){
 	    	Vertex w = new Vertex(v.name);
@@ -301,7 +301,7 @@ public class Graph {
 //    g.printAdjacencyList();
 //    DisplayGraph display = new DisplayGraph(g);
 //    display.setVisible(true);
-    g = g.getMinimumSpanningTree("v0");
+    g = g.getMinimumSpanningTree("v3");
 //    System.out.println("----------");
 //    System.out.println(g.getVertex("v3").backpointer);
 //    g.printAdjacencyList();
