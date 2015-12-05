@@ -176,6 +176,13 @@ public class Graph {
 //		  return vertexName;
 //	  }
   }
+  
+  /*
+   * Example:
+   * Calgary to NewYork
+   * BFS: Calgary - Winnipeg - SaltSalntMarie - Montreal - NewYork
+   * Dijkstra: Calgary - Winnipeg - Duluth - Chicago - Pittsburgh - NewYork
+   */
   public void doDijkstra(String s) {
        PriorityQueue<Pair> q = new PriorityQueue<>();
        for (Vertex v : getVertices()){
@@ -308,7 +315,6 @@ public class Graph {
 //    System.out.println(g.getVertex("v0").getEdges());
 //    g.printAdjacencyList();
     DisplayGraph display = new DisplayGraph(g);
-    display.setVisible(true);
-    
+    display.setVisible(true);   
   }
 }
